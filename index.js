@@ -31,9 +31,6 @@ const config = require("./botconfig/config.json")
 const advertisement = require("./botconfig/advertisement.json")
 const { delay } = require("./handlers/functions")
 require('dotenv').config()
-//port (as described above) and host are both wrong
-const host = 'localhost';
-const port = 3000;
 
 //use alternate localhost and the port Heroku assigns to $PORT
 const host = '0.0.0.0';
