@@ -1,1 +1,1 @@
-web: npm install express
+web: npm start
