@@ -55,7 +55,7 @@ module.exports = client => {
         } catch {}
 
         if(!client.setups.has(channel.id)){
-            if(interaction.customId != "ticket_verify"){
+            if(interaction.customId != "ticket_verify, ticket_noclose"){
                 interaction?.reply({content: ":x: This channel is not a Ticket", ephemeral: true})
             }
             return 
@@ -113,14 +113,14 @@ module.exports = client => {
                     ]
                 })
             }
-            let button_ticket_verify = new MessageButton().setStyle('SUCCESS').setCustomId('ticket_verify').setLabel("Verify this Step").setEmoji("833101995723194437")
-            channel.send({
-                content: `<@${buttonuser.id}>`,
+            let button_ticket_verify = new MessageButton().setStyle('PRIMARY').setCustomId('ticket_verify').setLabel("Close The Ticket")
+          channel.send({
+                content: `<@${data.user}>`,
                 embeds: [new Discord.MessageEmbed()
-                    .setTitle(eval(client.la[ls]["handlers"]["ticketeventjs"]["ticketevent"]["variable6"]))
-                    .setColor(es.color)
-                ],
-                components: [new MessageActionRow().addComponents(button_ticket_verify)]
+                    .setDescription(`Hello <@${data.user}>,\n\n_Our Task is done With you! If you want to close this Ticket, simply react to this message, otherwise it will be closed In 2 Hours_\n***__If Close Ticket Button Isn't working Click on the button 🔒 Close Button And Try Clicking On Close Ticket Button Again!!__***\n\n**Kind Regards**,\n\n\n> NotZenix's World\n> Have A Great Day!`)
+                    .setColor('#39FF00')              
+              ],             
+              components: [new MessageActionRow().addComponents(button_ticket_verify)]
             }).then(async msg => {
                 const collector = msg.createMessageComponentCollector(bb => !bb?.user.bot, {
                     time: 30000
@@ -133,12 +133,12 @@ module.exports = client => {
                     if (b?.customId == "ticket_verify") {
                         edited = true;
                         msg.edit({
-                            content: `<@${buttonuser.id}>`,
+                            content: ``,
                             embeds: [new Discord.MessageEmbed()
-                                .setTitle("Verified!")
+                                .setTitle("Closed The Ticket!")
                                 .setColor(es.color)
                             ],
-                            components: [new MessageActionRow().addComponents(button_ticket_verify.setDisabled(true))]
+                         components: [new MessageActionRow().addComponents(button_ticket_verify.setDisabled(true))]
                         }).catch((e) => {
                             console.log(String(e).grey)
                         });
@@ -179,7 +179,7 @@ module.exports = client => {
                             });
                         }
                         msg.channel.send({
-                            content: `<@${buttonuser.id}>`,
+                            content: `<@${data.user}>`,
                             embeds: [new Discord.MessageEmbed()
                                 .setTitle(eval(client.la[ls]["handlers"]["ticketeventjs"]["ticketevent"]["variable7"]))
                                 .setColor(es.color).setThumbnail(es.thumb ? es.footericon && (es.footericon.includes("http://") || es.footericon.includes("https://")) ? es.footericon : client.user.displayAvatarURL() : null)
@@ -268,7 +268,7 @@ module.exports = client => {
                     ]
                 });
             }
-            let button_ticket_verify = new MessageButton().setStyle('SUCCESS').setCustomId('ticket_verify').setLabel("Verify this Step").setEmoji("833101995723194437")
+            let button_ticket_verify = new MessageButton().setStyle('DANGER').setCustomId('ticket_verify').setLabel("Delete This Ticket!")
             let msg = await channel.send({
                 content: `<@${buttonuser.id}>`,
                 embeds: [new Discord.MessageEmbed()
@@ -290,7 +290,7 @@ module.exports = client => {
                     b.update({
                         content: `<@${buttonuser.id}>`,
                         embeds: [new Discord.MessageEmbed()
-                            .setTitle("Verified!")
+                            .setTitle(`Deleted the Ticket And Noted The Payment Of User:- <@${buttonuser.id}>!`)
                             .setColor(es.color)
                         ],
                         components: [new MessageActionRow().addComponents(button_ticket_verify.setDisabled(true))]
@@ -424,7 +424,7 @@ module.exports = client => {
                             .setTitle("Cancelled!")
                             .setColor(es.wrongcolor)
                         ],
-                        components: [new MessageActionRow().addComponents(button_ticket_verify.setDisabled(true))]
+                        components: [new MessageActionRow().addComponents(button_ticket_verify1.setDisabled(true))]
                     }).catch((e) => {
                         console.log(String(e).grey)
                     });
@@ -439,7 +439,7 @@ module.exports = client => {
                     msg.edit({
                         content: `<@${buttonuser.id}>`,
                         embeds: [endedembed],
-                        components: [new MessageActionRow().addComponents(button_ticket_verify.setDisabled(true).setLabel("FAILED TO VERIFY").setEmoji("833101993668771842").setStyle('DANGER'))]
+                        components: [new MessageActionRow().addComponents(button_ticket_verify1.setDisabled(true).setLabel("FAILED TO VERIFY").setEmoji("833101993668771842").setStyle('DANGER'))]
                     }).catch((e) => {
                         console.log(String(e).grey)
                     });
