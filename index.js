@@ -33,6 +33,8 @@ const { delay } = require("./handlers/functions")
 require('dotenv').config()
 
 //use alternate localhost and the port Heroku assigns to $PORT
+const express = require('express')
+const app = express()
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
