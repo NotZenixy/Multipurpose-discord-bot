@@ -38,6 +38,10 @@ const app = express()
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
 //Then you can start the server, as usual:
 
 app.listen(port, host, function() {
