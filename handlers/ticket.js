@@ -195,7 +195,7 @@ module.exports = (client, preindex) => {
     /**
      * CREATE THE CHANNEL
      */
-    await interaction?.reply({ content: `<a:Loading:833101350623117342> **Creating your Ticket...** (Usually takes 0-2 Seconds)`, ephemeral: true });
+    await interaction?.reply({ content: `<a:Loading:833101350623117342> **Creating your Ticket And Pinging...** (Usually takes 0-2 Seconds)`, ephemeral: true });
     guild.channels.create(channelname.substring(0, 31), optionsData).then(async ch => {
       let es = client.settings.get(guild.id, "embed")
       client.setups.push("TICKETS", user.id, ticketspath);
@@ -269,7 +269,7 @@ module.exports = (client, preindex) => {
           })
         }
       }
-      await interaction?.editReply({ content: `<a:yes:833101995723194437> **Your Ticket is created!** <#${ch.id}>`, ephemeral: true });
+      await interaction?.editReply({ content: `<a:yes:833101995723194437> **Your Ticket is created!** <#${ch.id}> \n<a:yes:833101995723194437> **Ping Successful!** You have now ordered a bot`, ephemeral: true });
     }).catch(e => {
       interaction?.editReply({ content: ":x: **Something went wrong!**", ephemeral: true })
       console.error(e)
